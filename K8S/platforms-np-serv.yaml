@@ -1,0 +1,29 @@
+# this Kubernetes YAML configuration file is defining a Service of type NodePort. 
+
+# Services in Kubernetes allow you to abstract away the details of your Pod infrastructure and allow network access to them.
+
+# You're listening on port 80 (HTTP default port) and relaying the traffic to targetPort 80, which should be the port your application is listening on within its container.
+
+# So, in summary, this YAML configuration is creating a NodePort service named platformnpservice-srv that will route 
+# network traffic from port 80 of each Node in the Kubernetes cluster to Pods that have the label app=platformservice, specifically to port 80 of those Pods.
+
+# apiVersion: v1: Specifies the version of the Kubernetes API you're using to create this object.
+apiVersion: v1
+# kind: Service: Specifies the kind of resource you want to create, which in this case is a Service. 
+kind: Service
+# metadata:: Metadata about the Service including its name, which in this case is platformnpservice-srv.
+metadata:
+  name: platformnpservice-srv
+# spec:: Specifies the details about the Service.
+spec:
+# type: NodePort: Specifies the type of the Service as NodePort. This means the Service will be accessible on a static port on each Node in the Kubernetes cluster.
+  type: NodePort
+# selector:: This is the selection criteria to select the Pods that this Service will target. Here, it's selecting all Pods with the label app=platformservice.
+  selector:
+    app: platformservice
+# ports:: Here, you're defining the ports that the Service will listen on and relay to your Pods. 
+  ports:
+    - name: platformservice
+      protocol: TCP
+      port: 80
+      targetPort: 80
