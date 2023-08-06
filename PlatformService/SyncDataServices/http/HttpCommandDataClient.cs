@@ -24,7 +24,7 @@ namespace PlatformService.SyncDataServices.Http
 
             // In an HTTP communication, data must be sent as a stream of bytes. 
             // This means we can't just send an object "as it is" over the network. 
-            // Serialization is the process of converting an object into a format that can be transported.
+            // Serialization is the process of converting an object into a format that can be transported over te wire.
             var httpContent = new StringContent(
                 JsonSerializer.Serialize(plat),
                 Encoding.UTF8,
